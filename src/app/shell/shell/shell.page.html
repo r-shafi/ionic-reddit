@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon name="cube-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Reddit App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" contentId="root-menu" type="overlay">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Popular Subs</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-menu>
+
+<ion-content>
+  <ion-router-outlet id="root-menu"></ion-router-outlet>
+</ion-content>
