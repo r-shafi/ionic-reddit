@@ -1,0 +1,7 @@
+{
+  "name": "ionic-reddit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
