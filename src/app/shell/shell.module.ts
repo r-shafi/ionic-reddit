@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 import { ShellRoutingModule } from './shell-routing.module';
 import { ShellPage } from './shell/shell.page';
 import { IonicModule } from '@ionic/angular';
-import { HomePage } from './shell/pages/home/home.page';
 
 @NgModule({
-  declarations: [ShellPage, HomePage],
+  declarations: [ShellPage],
   imports: [CommonModule, ShellRoutingModule, IonicModule],
 })
 export class ShellModule {}

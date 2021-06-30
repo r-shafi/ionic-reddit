@@ -18,6 +18,10 @@ export class RedditService {
   }
 
   getSpecificSub(sub: string) {
-    return this.http.get(`https://www.reddit.com/r/${sub}.json`);
+    return this.http.get(`https://www.reddit.com/${sub}.json`);
+  }
+
+  loadMore(sub: string, after: string) {
+    return this.http.get(`https://www.reddit.com/r/${sub}.json?after=${after}`);
   }
 }

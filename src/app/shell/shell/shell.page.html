@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-button (click)="openMenu()">
         <ion-icon name="cube-outline"></ion-icon>
@@ -11,12 +11,48 @@
 
 <ion-menu side="start" contentId="root-menu" type="overlay">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Popular Subs</ion-title>
+    <ion-toolbar color="primary">
+      <ion-title>List of Subs</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content>
+    <ion-searchbar
+      color="light"
+      placeholder="Ex. Pics"
+      debounce="500"
+      (ionChange)="search($event)"
+    ></ion-searchbar>
+    <ion-list>
+      <ion-item
+        *ngFor="let sub of subs$ | async"
+        (click)="navigateSub(sub.data.display_name_prefixed)"
+      >
+        <ion-label color="light">{{sub.data.display_name_prefixed}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-menu>
 
 <ion-content>
   <ion-router-outlet id="root-menu"></ion-router-outlet>
+  <ion-content color="medium">
+    <ion-card *ngFor="let post of posts" color="dark">
+      <ion-card-header>
+        <ion-card-title>{{post.data.title}}</ion-card-title>
+        <ion-card-subtitle>
+          {{post.data.subreddit_name_prefixed}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content *ngIf="isMedia(post.data)"
+        ><ion-img
+          [src]="post.data.url_overridden_by_dest"
+          (ionError)="imageError($event)"
+        ></ion-img
+      ></ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="fetchNewData($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
 </ion-content>
